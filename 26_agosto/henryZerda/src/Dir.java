@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 public  class Dir  implements Command{
     private HashMap<String,String> directory_path;
-    public Dir(HashMap<String,String> directory_list){
+    Dir(HashMap<String, String> directory_list){
         directory_path=directory_list;
     }
     @Override
@@ -17,13 +17,13 @@ public  class Dir  implements Command{
         if(st.hasMoreTokens()){
             path = st.nextToken();
             path = path.replaceAll("\"","");
+
         }else if(path_name.equals("home")){
             path = System.getProperty("user.dir");
         }else{
-            throw new Exception("Error en en parametro del comando dir en el archivo bob.conf");
+            throw new Exception("Error en en parametro de "+ path_name+" del comando dir en el archivo bob.conf");
         }
-        String [] complete_path = {path_name,path};
-        return complete_path;
+        return new String[]{path_name,path};
     }
 
 }
