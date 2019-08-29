@@ -8,9 +8,12 @@ public class ParamInstructionParser {
         StringTokenizer tokenizer = new StringTokenizer(param,"=");
         String dirname = tokenizer.nextToken();
         if(tokenizer.hasMoreTokens()){
-            return new String [] {dirname,tokenizer.nextToken()};
-        }else{
+            String dirPath=tokenizer.nextToken().replaceAll("\"","");
+            return new String [] {dirname,dirPath};
+        }else if(dirname.equals("home")){
             return new String[]{dirname,null};
+        }else{
+            throw new Exception("path para "+dirname+" incorrecto");
         }
     }
     public String [] getPrintParams(String param, Set<String>directoryMethods) throws Exception{

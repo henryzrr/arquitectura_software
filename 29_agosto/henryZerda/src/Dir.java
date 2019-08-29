@@ -1,35 +1,42 @@
-public class Dir implements Instruction {
+import java.util.Map;
+
+public class Dir implements DirectoryInstruction {
     String dirName;
     String dirPath;
     public Dir(){
         dirName = null;
         dirPath=null;
     }
-    public void setDirPath(String path) {
-        if(dirName.equals("home")&&path==null){
-            dirPath = getExecutionPath();
-        }else{
-            dirPath=path;
-        }
-    }
-
-    public String getDirPath() {
-        return dirPath;
-    }
-
-    private String getExecutionPath(){
-        return (System.getProperty("user.id"));
-    }
 
     @Override
-    public void set_instructionName(String name) {
+    public void setDirName(String name) {
         dirName = name;
     }
 
     @Override
-    public String getInstructionName() {
-        return dirName;
+    public void setDirInstruction(String instruction) {
+        if(dirName.equals("home")&&instruction==null){
+            dirPath = getExecutionPath();
+        }else{
+            dirPath=instruction;
+        }
     }
 
+    @Override
+    public void executeInstruction(Map<String, Directory> directories) throws Exception{
+        Directory dir;
+        if(directories.containsKey(dirName)){
+            dir = directories.get(dirName);
+            dir.setPath(dirPath);
+        }else{
+            dir = new Directory();
+            dir.setName(dirName);
+            dir.setPath(dirPath);
+            directories.put(dirName,dir);
+        }
+    }
 
+    private String getExecutionPath(){
+        return (System.getProperty("user.dir"));
+    }
 }
