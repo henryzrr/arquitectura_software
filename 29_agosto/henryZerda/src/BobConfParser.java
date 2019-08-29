@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-public class BobConfParser {
-    public static List<DirectoryInstruction> getInstructions(List<String>lines, Set<String>valid_instructions, Set<String> directoryMethods) throws Exception{
+class BobConfParser {
+    static List<DirectoryInstruction> getInstructions(List<String> lines, Set<String> valid_instructions, Set<String> directoryMethods) throws Exception{
         List<DirectoryInstruction> directoryInstruction_list = new ArrayList<>();
         ParamInstructionParser param_parser = new ParamInstructionParser();
         for (String line:lines
@@ -23,6 +23,7 @@ public class BobConfParser {
                         directoryInstruction =  new Print();
                         break;
                 }
+                assert directoryInstruction != null;
                 directoryInstruction.setDirName(dir_instruction[0]);
                 directoryInstruction.setDirInstruction(dir_instruction[1]);
                 directoryInstruction_list.add(directoryInstruction);

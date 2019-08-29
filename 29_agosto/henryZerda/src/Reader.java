@@ -3,8 +3,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reader {
-    public static List<String> readFile(String Path) throws Exception{
+class Reader {
+    static List<String> readFile(String Path) throws Exception{
         FileReader file_reader = new FileReader(Path);
         BufferedReader br = new BufferedReader(file_reader);
         String line;

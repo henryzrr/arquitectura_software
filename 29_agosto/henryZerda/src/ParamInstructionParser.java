@@ -1,9 +1,9 @@
 import java.util.Set;
 import java.util.StringTokenizer;
 
-public class ParamInstructionParser {
+class ParamInstructionParser {
 
-    public String [] getDirParams(String param) throws Exception{
+    String [] getDirParams(String param) throws Exception{
 
         StringTokenizer tokenizer = new StringTokenizer(param,"=");
         String dirname = tokenizer.nextToken();
@@ -11,16 +11,16 @@ public class ParamInstructionParser {
             String dirPath=tokenizer.nextToken().replaceAll("\"","");
             return new String [] {dirname,dirPath};
         }else if(dirname.equals("home")){
-            return new String[]{dirname,null};
+            return new String[]{dirname,""};
         }else{
             throw new Exception("path para "+dirname+" incorrecto");
         }
     }
-    public String [] getPrintParams(String param, Set<String>directoryMethods) throws Exception{
+    String [] getPrintParams(String param, Set<String> directoryMethods) throws Exception{
         StringTokenizer tokenizer = new StringTokenizer(param,".");
         String dir_name = tokenizer.nextToken();
         if(!tokenizer.hasMoreTokens()){
-            return new String[]{dir_name,null};
+            return new String[]{dir_name,""};
         }else{
             String method = tokenizer.nextToken();
             if(directoryMethods.contains(method)){

@@ -1,12 +1,12 @@
 import java.util.*;
 
-public class DirInstructionInvoquer {
-    Map<String,Directory> directories;
+class DirInstructionInvoquer {
+    private Map<String,Directory> directories;
 
-    public DirInstructionInvoquer(){
+    DirInstructionInvoquer(){
         directories=new HashMap<>();
     }
-    public void executeInstruction(List<DirectoryInstruction> directoryInstructions) throws Exception {
+    void executeInstruction(List<DirectoryInstruction> directoryInstructions) throws Exception {
         for (DirectoryInstruction i: directoryInstructions
              ) {
             i.executeInstruction(directories);

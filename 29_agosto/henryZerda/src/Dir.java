@@ -1,9 +1,9 @@
 import java.util.Map;
 
 public class Dir implements DirectoryInstruction {
-    String dirName;
-    String dirPath;
-    public Dir(){
+    private String dirName;
+    private String dirPath;
+    Dir(){
         dirName = null;
         dirPath=null;
     }
@@ -15,7 +15,7 @@ public class Dir implements DirectoryInstruction {
 
     @Override
     public void setDirInstruction(String instruction) {
-        if(dirName.equals("home")&&instruction==null){
+        if(dirName.equals("home")&&instruction.equals("")){
             dirPath = getExecutionPath();
         }else{
             dirPath=instruction;
@@ -23,7 +23,7 @@ public class Dir implements DirectoryInstruction {
     }
 
     @Override
-    public void executeInstruction(Map<String, Directory> directories) throws Exception{
+    public void executeInstruction(Map<String, Directory> directories) {
         Directory dir;
         if(directories.containsKey(dirName)){
             dir = directories.get(dirName);

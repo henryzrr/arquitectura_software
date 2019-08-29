@@ -5,54 +5,54 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Directory {
-    String name;
-    String path;
-    public Directory(){
+class Directory {
+    private String name;
+    private String path;
+    Directory(){
         name=null;
         path=null;
     }
 
 
-    public void getPath() {
+    void getPath() {
         System.out.println("El path de "+name+" es en:");
         System.out.println(path+"\n");
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public void setPath(String path) {
+    void setPath(String path) {
         this.path = path;
     }
-    public void getFiles() throws  Exception{
+    void getFiles() throws  Exception{
         System.out.println("Lost archivos de "+name+" son: ");
         try (Stream<Path> walk = Files.walk(Paths.get(path))) {
 
             List<String> result = walk.filter(Files::isRegularFile)
-                    .map(x -> x.toString()).collect(Collectors.toList());
+                    .map(Path::toString).collect(Collectors.toList());
 
             result.forEach(System.out::println);
 
         } catch (Exception e) {
             throw new Exception("Direccion ingresada en bob.conf para "+name+" no válida");
         }
-        System.out.println("");
+        System.out.println();
     }
-    public void getDirectories() throws Exception{
+     void getDirectories() throws Exception{
         System.out.println("Lost directorios de "+name+" son: ");
         try (Stream<Path> walk = Files.walk(Paths.get(path))) {
 
             List<String> result = walk.filter(Files::isDirectory)
-                    .map(x -> x.toString()).collect(Collectors.toList());
+                    .map(Path::toString).collect(Collectors.toList());
 
             result.forEach(System.out::println);
 
         } catch (Exception e) {
             throw new Exception("Direccion ingresada en bob.conf para "+name+" no válida");
         }
-        System.out.println("");
+        System.out.println();
     }
 
 }
