@@ -1,11 +1,11 @@
 import java.util.Map;
 
 public class Print implements DirectoryInstruction {
-    String dirName;
-    String dirFunction;
-    public Print(){
+    private String dirName;
+    private String dirFunction;
+    Print(){
         dirName=null;
-        dirFunction=null;
+        dirFunction = null;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Print implements DirectoryInstruction {
     public void executeInstruction(Map<String, Directory> directories) throws Exception{
         if(directories.containsKey(dirName)){
            Directory dir = directories.get(dirName);
-           if(dirFunction==null){
+           if(dirFunction.equals("")){
               dir.getPath();
            }else{
                switch (dirFunction){
