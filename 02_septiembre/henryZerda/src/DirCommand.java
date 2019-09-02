@@ -37,6 +37,7 @@ public class DirCommand implements Command {
                 throw new Exception("Error en  Comando dir, mal parametro "+dirName);
         else
             dirPath = tokenizer.nextToken();
+            dirPath = dirPath.replaceAll("\"","");
         if(isWindows)
             dirPath= systemValues.get("volume")+":"+dirPath;
     }

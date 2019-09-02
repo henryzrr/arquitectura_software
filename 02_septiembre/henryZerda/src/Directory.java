@@ -12,10 +12,6 @@ class Directory {
         this.path=path;
         this.name=name;
     }
-    Directory(String path){
-        this.path=path;
-        name="";
-    }
     List<String> getFiles() throws  Exception{
         List<String> result;
         try (Stream<Path> walk = Files.walk(Paths.get(path))) {

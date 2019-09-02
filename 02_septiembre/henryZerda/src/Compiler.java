@@ -17,7 +17,8 @@ public class Compiler implements Tool{
         for (String path:files
         ) {
             String command = compilerName+" "+path;
-            Runtime.getRuntime().exec(command);
+            System.out.println(command);
+            Process process=Runtime.getRuntime().exec(command);
         }
     }
 }

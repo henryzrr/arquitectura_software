@@ -21,19 +21,19 @@ class ProgramController {
         }catch(FileNotFoundException e){
             e.printStackTrace();
         }catch (IOException e){
-
+            e.printStackTrace();
         }catch(Exception e){
-
+            e.printStackTrace();
         }
     }
 
     Set<String> setCommands(){
         Set<String>commandList=new HashSet<>();
-        commands.add("dir");
-        commands.add("print");
-        commands.add("tool");
-        commands.add("apply");
-        commands.add("volume");
+        commandList.add("dir");
+        commandList.add("print");
+        commandList.add("tool");
+        commandList.add("apply");
+        commandList.add("volume");
         return commandList;
     }
     String setFilePath(){

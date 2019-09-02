@@ -40,7 +40,7 @@ public class ApplyCommand implements Command{
         if(tokenizer.hasMoreTokens()){
             if(!directories.containsKey(dirName))
                 throw new Exception("Parametros commando apply inválidos: no existe el directorio "+dirName);
-            Directory dir = new Directory(dirName,directories.get(dirName));
+            Directory dir = new Directory(directories.get(dirName),dirName);
             String dirFunction = tokenizer.nextToken();
             if(!dirFunction.equals("files") || tokenizer.hasMoreTokens()){
                 throw new Exception("Parametros commando apply inválidos");
