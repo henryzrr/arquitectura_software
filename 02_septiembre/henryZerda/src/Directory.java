@@ -46,7 +46,16 @@ class Directory {
         return path;
     }
 
-    public List<String> getOneFileType(String fileType) {
+    public List<String> getOneFileType(String fileType) throws Exception {
+        List<String> result;
+        try (Stream<Path> walk = Files.walk(Paths.get(path))) {
 
+            result = walk.map(x -> x.toString())
+                    .filter(f -> f.endsWith("."+fileType)).collect(Collectors.toList());
+
+        } catch (Exception e) {
+            throw new Exception("Direccion ingresada en bob.conf para "+name+" no válida");
+        }
+        return result;
     }
 }
