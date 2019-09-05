@@ -1,5 +1,3 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +8,9 @@ class CommandInterpreter {
     private FileConfParser fileParser;
     private boolean isWindowsOS;
     private Map<String,String> systemValues;
-    private Map<String,Tool> tools;
+    private Map<String,Compiler> compilers;
 
-    public CommandInterpreter(String bob_path, Set<String> commands,boolean isWindowsOS) throws Exception {
+    CommandInterpreter(String bob_path, Set<String> commands,boolean isWindowsOS) throws Exception {
         fileReader = new Reader(bob_path);
         fileParser = new FileConfParser(commands);
         this.isWindowsOS = isWindowsOS;
@@ -20,7 +18,7 @@ class CommandInterpreter {
         if(isWindowsOS) {
             systemValues.put("volume", "C");
         }
-        tools = new HashMap<>();
+        compilers = new HashMap<>();
     }
     void executeConfCommands() throws Exception{
         String fileLine;
@@ -35,10 +33,10 @@ class CommandInterpreter {
                     command = new PrintCommand(commandAndParamList, systemValues);
                     break;
                 case "apply":
-                    command = new ApplyCommand(commandAndParamList, systemValues,tools);
+                    command = new ApplyCommand(commandAndParamList, systemValues,compilers);
                     break;
                 case "tool":
-                    command = new ToolCommand(commandAndParamList, tools);
+                    command = new ToolCommand(commandAndParamList, compilers, systemValues);
                     break;
                 case "volume":
                     command = new VolumeCommand(commandAndParamList,systemValues);

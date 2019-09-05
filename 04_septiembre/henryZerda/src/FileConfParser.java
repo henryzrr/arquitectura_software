@@ -4,12 +4,12 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 class FileConfParser {
-    Set<String> commandList;
-    public FileConfParser(Set<String>commandList) {
+    private Set<String> commandList;
+    FileConfParser(Set<String>commandList) {
         this.commandList=commandList;
     }
     List<String> getCommandAndParams(String line)throws Exception{
-        List<String> tokens= new ArrayList<String>();
+        List<String> tokens= new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(line," ");
         String command = tokenizer.nextToken();
         if(!commandList.contains(command)){

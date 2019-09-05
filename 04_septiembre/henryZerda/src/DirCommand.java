@@ -9,7 +9,7 @@ public class DirCommand implements Command {
     private boolean isWindows;
     private Map<String,String> systemValues;
 
-    public DirCommand(List<String> commandAndParamList, boolean isWindowsOS, Map<String, String> systemValues) {
+    DirCommand(List<String> commandAndParamList, boolean isWindowsOS, Map<String, String> systemValues) {
         params = commandAndParamList;
         this.isWindows = isWindowsOS;
         this.systemValues = systemValues;
@@ -24,7 +24,7 @@ public class DirCommand implements Command {
         setDirNameAndPath();
         systemValues.put(dirName,dirPath);
     }
-    public void setDirNameAndPath()throws Exception{
+    private void setDirNameAndPath()throws Exception{
         if(params.size()>2){
             throw new Exception("Error en  Comando dir, mal parametro");
         }
