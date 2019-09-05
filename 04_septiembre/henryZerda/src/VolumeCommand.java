@@ -2,10 +2,10 @@ import java.util.List;
 import java.util.Map;
 
 public class VolumeCommand implements Command{
-    List<String> commandAndParamList;
-    Map<String, String> systemValues;
+    private List<String> commandAndParamList;
+    private Map<String, String> systemValues;
 
-    public VolumeCommand(List<String> commandAndParamList, Map<String, String> systemValues) {
+    VolumeCommand(List<String> commandAndParamList, Map<String, String> systemValues) {
         this.commandAndParamList =commandAndParamList;
         this.systemValues=systemValues;
     }

@@ -1,56 +1,41 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 public class ApplyCommand implements Command{
     private List<String> commandAndParamList;
-    private Map<String, String> directories;
-    private Map<String,Tool> tools;
+    private Map<String, String> systemValues;
+    private Map<String,Compiler> compilers;
 
-    public ApplyCommand(List<String> commandAndParamList, Map<String, String> directories, Map<String, Tool> tools) {
+    ApplyCommand(List<String> commandAndParamList, Map<String, String> systemValues, Map<String, Compiler> compilers) {
         this.commandAndParamList = commandAndParamList;
-        this.directories = directories;
-        this.tools = tools;
+        this.systemValues = systemValues;
+        this.compilers = compilers;
     }
 
     @Override
     public void execute() throws Exception {
-        if(commandAndParamList.size()!=3){
-            throw new Exception("Parametros comando apply invalidos");
-        }
-        String toolName = commandAndParamList.get(1);
-        if(!tools.containsKey(toolName))
-            throw new Exception("No existe un tool con el nombre "+toolName);
-        Tool tool= tools.get(toolName);
-        switch (tool.getType()){
+        int applyArguments = commandAndParamList.size();
+        if(applyArguments<2)
+            throw new Exception("apply error, instruccion mal declarada");
+        if(!systemValues.containsKey(commandAndParamList.get(1)))
+            throw new Exception("apply error, herramienta no soportada por el sistema");
+
+        switch (systemValues.get(commandAndParamList.get(1))){
             case "compilador":
-                List<String> files = getAllFiles(commandAndParamList.get(2),tool.getFileType1());
-                Compiler compiler = new Compiler(files,tool);
-                compiler.compile();
+                startCompilation(applyArguments);
+                break;
+            case "otro1":
                 break;
         }
 
     }
-
-    private List<String> getAllFiles(String path,String fileType) throws Exception {
-        StringTokenizer tokenizer = new StringTokenizer(path,".");
-        String dirName = tokenizer.nextToken();
-        List<String>files;
-        if(tokenizer.hasMoreTokens()){
-            if(!directories.containsKey(dirName))
-                throw new Exception("Parametros commando apply inválidos: no existe el directorio "+dirName);
-            Directory dir = new Directory(directories.get(dirName),dirName);
-            String dirFunction = tokenizer.nextToken();
-            if(!dirFunction.equals("files") || tokenizer.hasMoreTokens()){
-                throw new Exception("Parametros commando apply inválidos");
-            }
-            files = dir.getOneFileType(fileType);
-        }else{
-            files = new ArrayList<>();
-            files.add(dirName);
-        }
-        return files;
+    private void startCompilation(int argumentsNumber)throws Exception{
+        if(argumentsNumber!=3)
+            throw new Exception("apply error, instruccion mal declarada");
+        Compiler compiler = compilers.get(commandAndParamList.get(1));
+        compiler.execCompilation(commandAndParamList.get(2),systemValues);
     }
+
+
 
 }

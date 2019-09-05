@@ -13,17 +13,17 @@ class Directory {
         this.name=name;
     }
     List<String> getFiles() throws  Exception{
-        List<String> result;
+        List<String> files;
         try (Stream<Path> walk = Files.walk(Paths.get(path))) {
 
-            result = walk.filter(Files::isRegularFile)
+            files = walk.filter(Files::isRegularFile)
                     .map(Path::toString).collect(Collectors.toList());
 
 
         } catch (Exception e) {
             throw new Exception("Direccion ingresada en bob.conf para "+name+" no válida");
         }
-        return result;
+        return files;
     }
      List<String> getDirectories() throws Exception{
          List<String> result;
@@ -42,11 +42,11 @@ class Directory {
         return path;
     }
 
-    public List<String> getOneFileType(String fileType) throws Exception {
+    List<String> getOneFileType(String fileType) throws Exception {
         List<String> result;
         try (Stream<Path> walk = Files.walk(Paths.get(path))) {
 
-            result = walk.map(x -> x.toString())
+            result = walk.map(Path::toString)
                     .filter(f -> f.endsWith("."+fileType)).collect(Collectors.toList());
 
         } catch (Exception e) {

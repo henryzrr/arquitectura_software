@@ -4,11 +4,10 @@ import java.util.StringTokenizer;
 
 public class PrintCommand implements Command {
     private String dirName;
-    private String dirFunction;
-    List<String> commandAndParamList;
-    Map<String, String> directories;
+    private List<String> commandAndParamList;
+    private Map<String, String> directories;
 
-    public PrintCommand(List<String> commandAndParamList, Map<String, String> directories) {
+    PrintCommand(List<String> commandAndParamList, Map<String, String> directories) {
         this.commandAndParamList = commandAndParamList;
         this.directories=directories;
     }
@@ -20,10 +19,11 @@ public class PrintCommand implements Command {
         }
         StringTokenizer tokenizer = new StringTokenizer(commandAndParamList.get(1),".");
         dirName = tokenizer.nextToken();
+        String dirFunction;
         if(tokenizer.hasMoreElements())
             dirFunction = tokenizer.nextToken();
         else
-            dirFunction="path";
+            dirFunction ="path";
         if(!directories.containsKey(dirName))
             throw new Exception("Nombre de directorio inexistente "+dirName);
         Directory dir = new Directory(directories.get(dirName),dirName);
