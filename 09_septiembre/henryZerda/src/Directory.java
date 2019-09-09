@@ -61,7 +61,8 @@ class Directory {
         String relativeFile;
         for (String file: files
              ) {
-            relativeFile = file.replaceFirst(path+"/","");
+            int sizePath = path.length();
+            relativeFile = file.substring(sizePath+1);
             trimmedFiles.add(relativeFile);
         }
         return trimmedFiles;

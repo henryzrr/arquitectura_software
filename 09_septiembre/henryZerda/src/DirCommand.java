@@ -40,5 +40,6 @@ public class DirCommand implements Command {
             dirPath = dirPath.replaceAll("\"","");
         if(isWindows)
             dirPath= systemValues.get("volume")+":"+dirPath;
+            dirPath = dirPath.replaceAll("/","\\\\");
     }
 }
