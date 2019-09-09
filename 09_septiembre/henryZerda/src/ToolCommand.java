@@ -32,10 +32,9 @@ public class ToolCommand implements Command{
         }
         String compilerName = commandAndParamList.get(2);
         String inputFile = commandAndParamList.get(3);
-        String outputFile = commandAndParamList.get(4);
         Tool compiler;
         if(compilerName.equals("javac"))
-            compiler = new Javac(compilerName,inputFile,outputFile);
+            compiler = new Javac(compilerName,inputFile);
         else
             throw new Exception("tool error, herramienta no soportada: "+compilerName);
         tools.put(compilerName,compiler);
