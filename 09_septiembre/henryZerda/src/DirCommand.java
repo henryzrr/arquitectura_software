@@ -38,8 +38,9 @@ public class DirCommand implements Command {
         else
             dirPath = tokenizer.nextToken();
             dirPath = dirPath.replaceAll("\"","");
-        if(isWindows)
-            dirPath= systemValues.get("volume")+":"+dirPath;
-            dirPath = dirPath.replaceAll("/","\\\\");
+        if(isWindows) {
+            dirPath = systemValues.get("volume") + ":" + dirPath;
+            dirPath = dirPath.replaceAll("/", "\\\\");
+        }
     }
 }
