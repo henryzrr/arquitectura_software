@@ -8,7 +8,7 @@ public class Jar implements Tool{
     private String inputFileType;
     private String outputFileType;
 
-    public Jar(String packerName, String inputFileType, String outputFileType) {
+    Jar(String packerName, String inputFileType, String outputFileType) {
         this.packerName = packerName;
         this.inputFileType = inputFileType;
         this.outputFileType = outputFileType;
@@ -41,10 +41,7 @@ public class Jar implements Tool{
         command.add("cfe");
         command.add(jarName+"."+outputFileType);
         command.add(mainClass);
-        for (String file:files
-             ) {
-            command.add(file);
-        }
+        command.addAll(files);
         File path = new File(directoryClassesPath);
         ProcessBuilder processBuilder = new ProcessBuilder(command);
         processBuilder.directory(path);

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -6,12 +5,10 @@ import java.util.StringTokenizer;
 class Javac implements Tool{
     private String compilerName;
     private String fileType1;
-    private String fileType2;
 
-    Javac(String compilerName, String fileType1, String fileType2) {
+    Javac(String compilerName, String fileType1) {
         this.compilerName = compilerName;
         this.fileType1 = fileType1;
-        this.fileType2 = fileType2;
     }
 
 
