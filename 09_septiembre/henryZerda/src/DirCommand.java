@@ -35,12 +35,13 @@ public class DirCommand implements Command {
                 dirPath = getExecutionPath();
             else
                 throw new Exception("Error en  Comando dir, mal parametro "+dirName);
-        else
+        else{
             dirPath = tokenizer.nextToken();
             dirPath = dirPath.replaceAll("\"","");
-        if(isWindows) {
-            dirPath = systemValues.get("volume") + ":" + dirPath;
-            dirPath = dirPath.replaceAll("/", "\\\\");
+            if(isWindows) {
+                dirPath = systemValues.get("volume") + ":" + dirPath;
+                dirPath = dirPath.replaceAll("/", "\\\\");
+            }
         }
     }
 }
