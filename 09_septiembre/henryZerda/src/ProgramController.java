@@ -33,7 +33,7 @@ class ProgramController {
         return "configure/bob.conf";
     }
     private boolean getIsWindows(){
-        return (System.getProperty("os.name")).equals("Windows");
+        return (System.getProperty("os.name")).contains("Windows");
     }
 
 }
