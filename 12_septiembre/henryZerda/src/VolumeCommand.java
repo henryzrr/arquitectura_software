@@ -13,7 +13,7 @@ public class VolumeCommand implements ICommand {
     @Override
     public void execute() throws Exception {
         if(commandAndParamList.size()>2)
-            throw new Exception("parametro no admitido para volume ");
+            throw new Exception("volume error, parametro no admitido");
         String volumeIdentifier = commandAndParamList.get(1);
         systemValues.put("volume",volumeIdentifier);
     }

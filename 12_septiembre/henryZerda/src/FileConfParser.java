@@ -13,9 +13,9 @@ class FileConfParser {
         StringTokenizer tokenizer = new StringTokenizer(line," ");
         String command = tokenizer.nextToken();
         if(!commandList.contains(command)){
-            throw new Exception("Comando no existente "+command);
+            throw new Exception("bob.conf error, Comando no existente "+command);
         }else if(!tokenizer.hasMoreTokens()) {
-            throw new Exception("Error! Faltan valores para " + command);
+            throw new Exception("bob.conf error, Faltan valores para " + command);
         }
         tokens.add(command);
         while (tokenizer.hasMoreTokens()){
