@@ -42,7 +42,7 @@ class CommandInterpreter {
                     command = new VolumeCommand(commandAndParamList,systemValues);
                     break;
                 default:
-                    throw new Exception("Error comando, no válido");            }
+                    throw new Exception("bob.conf error,  comando, no válido");            }
             command.execute();
         }
         fileReader.close();

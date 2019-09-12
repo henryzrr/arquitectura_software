@@ -15,7 +15,7 @@ public class PrintCommand implements ICommand {
     @Override
     public void execute() throws Exception {
         if(commandAndParamList.size()>2){
-            throw new Exception("Error en  Comando print, mal parametro");
+            throw new Exception("print error, mal parametro");
         }
         String dirNameAndFunction = commandAndParamList.get(1);
         StringTokenizer tokenizer = new StringTokenizer(dirNameAndFunction,".");
@@ -26,7 +26,7 @@ public class PrintCommand implements ICommand {
         else
             dirFunction ="path";
         if(!directories.containsKey(dirName))
-            throw new Exception("Nombre de directorio inexistente "+dirName);
+            throw new Exception("print error, Nombre de directorio inexistente "+dirName);
         Directory dir = new Directory(directories.get(dirName),dirName);
         switch (dirFunction){
             case "path":

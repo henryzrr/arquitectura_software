@@ -22,7 +22,7 @@ class Directory {
 
 
         } catch (Exception e) {
-            throw new Exception("Direccion ingresada en bob.conf para "+name+" no válida");
+            throw new Exception("dir error, Direccion ingresada en bob.conf para "+name+" no válida");
         }
         return files;
     }
@@ -34,7 +34,7 @@ class Directory {
                     .map(Path::toString).collect(Collectors.toList());
 
         } catch (Exception e) {
-            throw new Exception("Direccion ingresada en bob.conf para "+name+" no válida");
+            throw new Exception("dir error, Direccion ingresada en bob.conf para "+name+" no válida");
         }
         return directories;
     }
@@ -51,7 +51,7 @@ class Directory {
                     .filter(f -> f.endsWith("."+fileType)).collect(Collectors.toList());
 
         } catch (Exception e) {
-            throw new Exception("Direccion ingresada en bob.conf para "+name+" no válida");
+            throw new Exception("dir error, Direccion ingresada en bob.conf para "+name+" no válida");
         }
         return result;
     }

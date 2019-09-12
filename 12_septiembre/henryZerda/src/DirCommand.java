@@ -26,7 +26,7 @@ public class DirCommand implements ICommand {
     }
     private void setDirNameAndPath()throws Exception{
         if(CommandAndParams.size()>2){
-            throw new Exception("Error en  Comando dir, mal parametro");
+            throw new Exception("dir error, mal parametro");
         }
         String dirNameAndPath = CommandAndParams.get(1);
         StringTokenizer tokenizer = new StringTokenizer(dirNameAndPath,"=");
@@ -35,7 +35,7 @@ public class DirCommand implements ICommand {
             if(dirName.equals("home"))
                 dirPath = getExecutionPath();
             else
-                throw new Exception("Error en  Comando dir, mal parametro "+dirName);
+                throw new Exception("dir error, mal parametro "+dirName);
         else{
             dirPath = tokenizer.nextToken();
             dirPath = dirPath.replaceAll("\"","");
