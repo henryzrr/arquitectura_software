@@ -14,7 +14,5 @@ class BobConfCommandReader {
     String readNextLine() throws IOException {
         return bufferedReader.readLine();
     }
-    void close() throws IOException {
-        bufferedReader.close();
-    }
+
 }

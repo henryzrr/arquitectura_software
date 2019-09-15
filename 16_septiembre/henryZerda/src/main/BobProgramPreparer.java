@@ -55,7 +55,7 @@ class BobProgramPreparer {
     void startProgram() throws Exception{
 
         BobConfCommandReader commandReader = new BobConfCommandReader(bobConfPath);
-        CommandParser commandParser = new CommandParser(availableCommandInterfaces,programDefaultValues);
+        CommandParser commandParser = new CommandParser(availableCommandInterfaces);
         CommandIterator commandIterator = new CommandIterator(commandParser,commandReader);
         CommandInterpreter bobCommandInterpreter = new CommandInterpreter(commandIterator, programDefaultValues);
         bobCommandInterpreter.executeCommand();

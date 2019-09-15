@@ -1,18 +1,18 @@
 package commands;
 
 import main.Command;
-import main.Directory;
 
-import java.util.Iterator;
+
+
 import java.util.List;
 import java.util.Map;
 
-public class ApplyCommand implements Command {
+class ApplyCommand implements Command {
 
     private  String toolName;
     private String dirCallFunction;
 
-    public ApplyCommand(List<String> commandLineTokens) throws Exception {
+    ApplyCommand(List<String> commandLineTokens) throws Exception {
         initializeApplyCommand(commandLineTokens);
     }
 
