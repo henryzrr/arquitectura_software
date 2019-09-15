@@ -1,6 +1,5 @@
 package main;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,7 +26,12 @@ public class Directory {
         return  auxList.iterator();
     }
     public Iterator<String> getAllFiles()throws Exception{
-        return getFiles("*").iterator();
+        try {
+            Stream<Path> streamPath = Files.walk(Paths.get(dirPath));
+            return  streamPath.filter(Files::isRegularFile).map(Path::toString).collect(Collectors.toList()).iterator();
+        }catch (Exception e){
+            throw  new Exception("path Error, path assigned to "+dirName+" is invalid");
+        }
     }
     public Iterator<String> getEspeciFicfileType(String fileType) throws Exception{
          return getFiles(fileType).iterator();
@@ -51,7 +55,7 @@ public class Directory {
     private List<String> getFiles(String fileType) throws Exception {
         try {
             Stream<Path> streamPath = Files.walk(Paths.get(dirPath));
-            return  streamPath.filter(Files::isRegularFile).map(Path::toString).filter(x-> x.endsWith(fileType)).collect(Collectors.toList());
+            return  streamPath.map(Path::toString).filter(x-> x.endsWith(fileType)).collect(Collectors.toList());
         }catch (Exception e){
             throw  new Exception("path Error, path assigned to "+dirName+" is invalid");
         }

@@ -7,13 +7,11 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class jarPacker implements IPacker {
+class jarPacker implements IPacker {
     private Directory directory;
-    private String homePath;
     private ProcessBuilder processBuilder;
-    public jarPacker(Directory directory, String homePath) {
+    jarPacker(Directory directory) {
         this.directory = directory;
-        this.homePath = homePath;
         processBuilder = initializeProcessBuilder();
 
     }

@@ -25,7 +25,7 @@ public class Packer implements ITool {
         IPacker packer;
         if(fileType1.equals("class") && fileType2.equals("jar")) {
             String homePath = programValues.get("home");
-            packer = new jarPacker(directory,homePath);
+            packer = new jarPacker(directory);
             packer.startPacking();
         }else
             throw new Exception("apply Error, bad params "+fileType1 +" or "+fileType2 +" unsupported");

@@ -20,7 +20,7 @@ public class ToolPluginInterface implements IPlugin {
         return new ToolCommand(commandLineTokens);
     }
 
-    protected static Map<String,ITool> getTools(){
+    static Map<String,ITool> getTools(){
         return tools;
     }
 }

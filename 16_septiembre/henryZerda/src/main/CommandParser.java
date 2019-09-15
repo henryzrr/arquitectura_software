@@ -5,13 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-public class CommandParser {
+class CommandParser {
     private Map<String, IPlugin> availableCommandInterfaces;
-    private Map<String, String> programValues;
 
-    CommandParser(Map<String, IPlugin> availableCommandInterfaces, Map<String, String> programValues) {
+    CommandParser(Map<String, IPlugin> availableCommandInterfaces) {
         this.availableCommandInterfaces = availableCommandInterfaces;
-        this.programValues = programValues;
+
     }
 
     Command nextCommand(String nextCommandLine) throws Exception{
