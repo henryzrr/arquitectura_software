@@ -7,11 +7,11 @@ public class PackerCreator implements IToolCreator {
 
     @Override
     public String getToolCreatorName() {
-        return null;
+        return "empaquetador";
     }
 
     @Override
     public ITool newTool(String tool, String fileType1, String fileType2) throws Exception {
-        return null;
+        return new Packer(tool,fileType1,fileType2);
     }
 }
