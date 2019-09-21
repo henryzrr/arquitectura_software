@@ -30,18 +30,14 @@ class ToolCommand implements Command {
 
     @Override
     public void execute(Map<String, String> programValues) throws Exception {
-        ITool tool;
-        switch (toolType){
-            case "compilador":
-                tool = new Compiler(toolName,fileType1,fileType2);
-                break;
-            case "empaquetador":
-                tool = new Packer(toolName,fileType1,fileType2);
-                break;
-            default:
-                throw new Exception("tool Error, tool type unsuported on "+toolName);
+        Map<String,IToolCreator> availableTools = ToolPluginInterface.getToolCreator();
+        if(!availableTools.containsKey(toolType)){
+            throw new Exception("tool Error, tool type unsuported on "+toolName);
         }
-        Map<String,ITool> tools = ToolPluginInterface.getTools();
-        tools.put(toolName,tool);
+
+        IToolCreator toolCreator =availableTools.get(toolType);
+        ITool tool=toolCreator.newTool(toolName,fileType1,fileType2);
+
+        (ToolPluginInterface.getTools()).put(toolName,tool);
     }
 }
