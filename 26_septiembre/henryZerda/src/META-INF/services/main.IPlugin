@@ -1,5 +1,0 @@
-commands.toolAndApply.ToolPluginInterface
-commands.volume.VolumePluginInterface
-commands.toolAndApply.ApplyPluginInterface
-commands.dir.DirPluginInterface
-commands.print.PrintPluginInterface
