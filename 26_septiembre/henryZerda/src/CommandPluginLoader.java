@@ -14,7 +14,7 @@ public class CommandPluginLoader {
         for (String pluginName: iteratorAvailablePlugins
              ) {
             ClassLoader loader = new BobClassLoader();
-            Object o= ((BobClassLoader) loader).loadClass(pluginName,true).newInstance();
+            Object o= ((BobClassLoader) loader).loadClass(pluginName,true).getDeclaredConstructor().newInstance();
             IPlugin command = (IPlugin) o;
             availableCommandInterfaces.put(command.getPluginName(),command);
         }
