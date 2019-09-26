@@ -24,6 +24,7 @@ class JavaCompiler implements ICompiler{
         command.add(file);
         processBuilder.command(command);
         Process process = processBuilder.start();
+        System.out.println(process.info());
         process.waitFor();
     }
 
