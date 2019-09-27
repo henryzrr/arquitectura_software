@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93c10915-3e10-45aa-b52b-049f80a961a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bob2.conf" beforeDir="false" afterPath="$PROJECT_DIR$/bob.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/henryZerda/JavaCompiler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/henryZerda/JavaCompiler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/henryZerda/Main.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommandPluginLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandPluginLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JavaCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JavaCompiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bob1.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/bob.conf" afterDir="false" />
-    </list>
+    <list default="true" id="93c10915-3e10-45aa-b52b-049f80a961a4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +84,11 @@
       <workItem from="1569293087343" duration="2228000" />
       <workItem from="1569462153010" duration="281000" />
       <workItem from="1569462516721" duration="14369000" />
+<<<<<<< HEAD
       <workItem from="1569518808048" duration="350000" />
+=======
+      <workItem from="1569526398352" duration="83000" />
+>>>>>>> javac corregido, listo apra presentacion 27 de septiembre
     </task>
     <servers />
   </component>
