@@ -4,6 +4,11 @@ public class Print implements Command {
     private DirectoryManager directoryManager;
     private Settings settings;
     private PrintParser printParser;
+    public Print(){
+        directoryManager = DirectoryManager.getInstance();
+        settings = BobSetting.getInstance();
+        printParser = new PrintParser();
+    }
     @Override
     public void execute(String args) {
         String [] tokens = printParser.makeParsing(args);
@@ -18,23 +23,28 @@ public class Print implements Command {
             System.exit(1);
         }
         String dirPath = settings.getDir(dirName);
-        directoryManager.setNewDirectory(dirName,dirPath);
         Iterator<String> dirContent;
+        System.out.println();
         switch (function){
             case "files":
-                dirContent = directoryManager.getAllFiles();
+                dirContent = directoryManager.getAllFiles(dirPath);printDirContent(dirContent);
+                printDirContent(dirContent);
                 break;
             case "dirs":
-                dirContent = directoryManager.getDirs();
+                dirContent = directoryManager.getDirs(dirPath);
+                printDirContent(dirContent);
                 break;
             default:
-                dirContent = directory.getDirPath();
+                printCurrentPath(dirPath);
         }
-        printDirContent(dirContent);
+
+    }
+
+    private void printCurrentPath(String dirPath) {
+        System.out.println(dirPath);
     }
 
     private void printDirContent(Iterator<String> dirContent) {
-
         while (dirContent.hasNext()){
             System.out.println(dirContent.next());
         }
