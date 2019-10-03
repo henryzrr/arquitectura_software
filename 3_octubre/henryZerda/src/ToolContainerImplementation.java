@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ToolContainerImplementation implements ToolContainer {
-    private ToolContainer toolContainer= new ToolContainerImplementation();
+    private static ToolContainer toolContainer= new ToolContainerImplementation();
     private Map<String,Tool> container;
 
     private ToolContainerImplementation(){
@@ -20,5 +20,9 @@ public class ToolContainerImplementation implements ToolContainer {
     @Override
     public Tool getTool(String key) {
         return container.get(key);
+    }
+
+    public static ToolContainer getInstance(){
+        return toolContainer;
     }
 }

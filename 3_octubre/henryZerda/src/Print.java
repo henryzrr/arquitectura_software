@@ -1,20 +1,29 @@
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Print implements Command {
-    private DirectoryManager directoryManager;
     private Settings settings;
-    private PrintParser printParser;
     public Print(){
-        directoryManager = DirectoryManager.getInstance();
         settings = BobSetting.getInstance();
-        printParser = new PrintParser();
     }
     @Override
     public void execute(String args) {
-        String [] tokens = printParser.makeParsing(args);
-        String dirName = tokens[0];
-        String function = tokens[1];
-        print(dirName,function);
+        try {
+            String [] tokens = makeParsing(args);
+            String dirName = tokens[0];
+            String function = tokens[1];
+            print(dirName,function);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     private void print(String dirName, String function) {
@@ -27,11 +36,11 @@ public class Print implements Command {
         System.out.println();
         switch (function){
             case "files":
-                dirContent = directoryManager.getAllFiles(dirPath);printDirContent(dirContent);
+                dirContent = getAllFiles(dirPath);printDirContent(dirContent);
                 printDirContent(dirContent);
                 break;
             case "dirs":
-                dirContent = directoryManager.getDirs(dirPath);
+                dirContent = getDirs(dirPath);
                 printDirContent(dirContent);
                 break;
             default:
@@ -40,6 +49,24 @@ public class Print implements Command {
 
     }
 
+     private Iterator<String> getAllFiles(String dirPath)throws InvalidPathException {
+        try {
+            Stream<Path> streamPath = Files.walk(Paths.get(dirPath));
+            return  streamPath.filter(Files::isRegularFile).map(Path::toString).collect(Collectors.toList()).iterator();
+        }catch (Exception e){
+            throw  new InvalidPathException("The path does not exist","bad path param for getAllFiles method on Print");
+        }
+    }
+
+    private Iterator<String> getDirs(String dirPath)throws InvalidPathException{
+        try{
+            Stream<Path> streamPath = Files.walk(Paths.get(dirPath));
+            List<String> dirs = streamPath.filter(Files::isDirectory).map(Path::toString).collect(Collectors.toList());
+            return dirs.iterator();
+        }catch (Exception e){
+            throw  new InvalidPathException("The path does not exist","bad path param for getDirs method on Print");
+        }
+    }
     private void printCurrentPath(String dirPath) {
         System.out.println(dirPath);
     }
@@ -49,4 +76,16 @@ public class Print implements Command {
             System.out.println(dirContent.next());
         }
     }
+    private String [] makeParsing(String args) {
+        StringTokenizer tokenizer = new StringTokenizer(args,".");
+        String dirName = tokenizer.nextToken();
+        String functionCall;
+        if(tokenizer.hasMoreTokens())
+            functionCall = tokenizer.nextToken();
+        else
+            functionCall="path";
+
+        return new String[]{dirName,functionCall};
+    }
+
 }
