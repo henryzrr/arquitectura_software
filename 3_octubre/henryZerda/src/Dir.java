@@ -1,15 +1,14 @@
 import java.nio.file.Paths;
+import java.util.StringTokenizer;
 
 public class Dir implements Command{
     Settings settings;
-    DirParser parser;
     public Dir(){
-        Settings settings = BobSetting.getInstance();
-        DirParser parser = new DirParser();
+        settings = BobSetting.getInstance();
     }
     @Override
     public void execute(String args) {
-        String [] tokens = parser.makeParsing(args);
+        String [] tokens = makeParsing(args);
         String dirName = tokens[0];
         String dirPath = tokens[1];
         setDirAndPath(dirName,dirPath);
@@ -17,16 +16,17 @@ public class Dir implements Command{
     }
     private void setDirAndPath(String dirName, String dirPath){
         boolean pathExist = verifyPathIsSetted(dirPath);
-
-        if(pathExist){
-            if(dirName.equals("home"))
+        if(!pathExist){
+            if(dirName.equals("home")) {
                 dirPath = getExecutionPath();
-            else {
+            }else {
                 System.err.println("Bad Params for dir on bob.conf");
                 System.exit(1);
             }
         }else{
             boolean pathIsRelative = verifyPathIsRelative(dirPath);
+            if(!settings.exists("home"))
+                settings.setDir("home",getExecutionPath());
             if(pathIsRelative)
                 dirPath = settings.getDir("home")+"/"+dirPath;
             if(!settings.isUnix()){
@@ -38,8 +38,17 @@ public class Dir implements Command{
         settings.setDir(dirName,dirPath);
 
     }
+    public String[] makeParsing(String args) {
+        StringTokenizer tokenizer = new StringTokenizer(args,"=");
+        String dirName = tokenizer.nextToken();
+        String dirPath = "";
+        if(tokenizer.hasMoreTokens()){
+            dirPath = tokenizer.nextToken().replaceAll("\"","");
+        }
+        return  new String[]{dirName,dirPath};
+    }
     private boolean verifyPathIsSetted(String dirPath) {
-        return dirPath==null;
+        return !dirPath.equals("");
     }
 
     private boolean verifyPathIsRelative(String dirPath) {
