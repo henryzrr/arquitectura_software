@@ -27,9 +27,10 @@ public class Dir implements Command{
             boolean pathIsRelative = verifyPathIsRelative(dirPath);
             if(!settings.exists("home"))
                 settings.setDir("home",getExecutionPath());
-            if(pathIsRelative)
-                dirPath = settings.getDir("home")+"/"+dirPath;
-            else if(!settings.isUnix()){
+            if(pathIsRelative) {
+                dirPath = settings.getDir("home") + "/" + dirPath;
+                dirPath = Paths.get(dirPath).toString();
+            }else if(!settings.isUnix()){
                 dirPath=settings.getVolume()+":"+dirPath;
                 dirPath = Paths.get(dirPath).toString();
             }
