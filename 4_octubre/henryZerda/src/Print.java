@@ -36,7 +36,7 @@ public class Print implements Command {
         System.out.println();
         switch (function){
             case "files":
-                dirContent = getAllFiles(dirPath);printDirContent(dirContent);
+                dirContent = getAllFiles(dirPath);
                 printDirContent(dirContent);
                 break;
             case "dirs":
