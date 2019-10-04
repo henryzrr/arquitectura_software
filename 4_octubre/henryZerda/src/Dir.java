@@ -29,7 +29,7 @@ public class Dir implements Command{
                 settings.setDir("home",getExecutionPath());
             if(pathIsRelative)
                 dirPath = settings.getDir("home")+"/"+dirPath;
-            if(!settings.isUnix()){
+            else if(!settings.isUnix()){
                 dirPath=settings.getVolume()+":"+dirPath;
                 dirPath = Paths.get(dirPath).toString();
             }
