@@ -54,7 +54,7 @@ public class Print implements Command {
             Stream<Path> streamPath = Files.walk(Paths.get(dirPath));
             return  streamPath.filter(Files::isRegularFile).map(Path::toString).collect(Collectors.toList()).iterator();
         }catch (Exception e){
-            throw  new InvalidPathException("The path does not exist","bad path param for getAllFiles method on Print");
+            throw  new InvalidPathException("The path does not exist: "+dirPath,"bad path param for getAllFiles method on Print");
         }
     }
 
@@ -64,7 +64,7 @@ public class Print implements Command {
             List<String> dirs = streamPath.filter(Files::isDirectory).map(Path::toString).collect(Collectors.toList());
             return dirs.iterator();
         }catch (Exception e){
-            throw  new InvalidPathException("The path does not exist","bad path param for getDirs method on Print");
+            throw  new InvalidPathException("The path does not exist: "+dirPath,"bad path param for getDirs method on Print");
         }
     }
     private void printCurrentPath(String dirPath) {

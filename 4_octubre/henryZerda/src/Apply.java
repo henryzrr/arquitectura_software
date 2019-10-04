@@ -87,7 +87,7 @@ public class Apply implements Command {
         try {
             return getFiles(fileType, dirPath).iterator();
         }catch (Exception e){
-            throw  new InvalidPathException("The path does not exist","bad path param for getSpecificFileTypeWithAbsolutePath method on Apply");
+            throw  new InvalidPathException("The path does not exist: "+dirPath,"bad path param for getSpecificFileTypeWithAbsolutePath method on Apply");
         }
     }
     private List<String> getFiles(String fileType,String dirPath) throws Exception {
@@ -101,7 +101,7 @@ public class Apply implements Command {
             files = formatToRelativePath(files,dirPath);
             return files.iterator();
         }catch (Exception e){
-            throw  new InvalidPathException("The path does not exist","bad path param for getSpecificFileTypeWithRelativePath method on Apply");
+            throw  new InvalidPathException("The path does not exist: "+dirPath,"bad path param for getSpecificFileTypeWithRelativePath method on Apply");
         }
 
     }
