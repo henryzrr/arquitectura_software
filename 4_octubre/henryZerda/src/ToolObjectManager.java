@@ -17,7 +17,7 @@ public class ToolObjectManager implements ToolObject {
     }
 
     @Override
-    public String getFullCommand() {
+    public String getFullCommandCall() {
         return args;
     }
 
