@@ -8,7 +8,7 @@ public class Tool implements Command {
     public void execute(String args) {
         try{
             String [] toolParams = makeParsing(args);
-            ToolObjectManager tool = new ToolObjectManager(toolParams[0],toolParams[1],toolParams[2],toolParams[3]);
+            ToolObject tool = new ToolObjectManager(toolParams[0],toolParams[1],toolParams[2],toolParams[3]);
             toolSettings.setTool(toolParams[0],tool);
         }catch (Exception e){
             e.printStackTrace();

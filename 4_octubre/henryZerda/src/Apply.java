@@ -36,7 +36,7 @@ public class Apply implements Command {
 
     private void executeCommand(ToolObject toolObject, String dirPath) {
         try{
-            List<String> command = tokenizerCommand(toolObject.getFullCommand());
+            List<String> command = tokenizerCommand(toolObject.getFullCommandCall());
             getAllFiles(command,dirPath, toolObject.getInputFileType());
             File executionDir = new File(dirPath);
             ProcessBuilder processBuilder = new ProcessBuilder(command);
